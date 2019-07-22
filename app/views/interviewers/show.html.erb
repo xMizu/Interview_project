@@ -1,0 +1,56 @@
+<h1><%= @interviewer.name %></h1>
+
+<% if flash[:message] %>
+<%= flash[:message] %>
+<%end%>
+
+<h3>Age: <%= @interviewer.age %></h3>
+<h3>Email: <%= @interviewer.email %></h3>
+<h3>Company: <%= @interviewer.company %></h3>
+
+<%=button_to "Edit #{@interviewer.name}", edit_interviewer_path(@interviewer), method: "get" %>
+<%=button_to "Delete #{@interviewer.name}", interviewer_path(@interviewer), method: "delete" %>
+<%= button_to "Make New Interview", create_interview_path ,method: :get %>
+<br>
+<%=button_to "Go Home", interviewers_path, method: "get" %>
+
+<h2>Reschedule Interviews</h2>
+<ul>
+    <% @reschedule_interviews.each do |interview|%>
+    <li>
+        <%= link_to "#{interview.date.strftime("%B %-d, %Y %I:%M %p")} with #{interview.applicant.name}", interview_path(interview)%>
+        <ul>
+            <li>
+                <%="#{interview.applicant.name} said: #{interview.message}" %>
+                <%= form_for interview do |f| %>
+                <%= f.datetime_field :date %>
+                <%= f.submit "Change Time" %>
+                <% end %>
+            </li>
+        </ul>
+        <br/>
+    </li>
+    <%end%>
+</ul>
+
+
+<h2>Confirmed Interviews</h2>
+
+<ul>
+<% @confirmed_interviews.each do |interview|%>
+<%= link_to "#{interview.date.strftime("%B %-d, %Y %I:%M %p")} with #{interview.interviewer.name}", interview_path(interview)%>
+<%= button_to 'Cancel', interview_path(interview), method: "delete" %>
+<br/>
+<%end%>
+</ul>
+
+
+
+<h2>Awaiting Approval</h2>
+<ul>
+    <% @pending_interviews.each do |interview|%>
+    <li>
+        <%= link_to "#{interview.date.strftime("%B %-d, %Y %I:%M %p")} with #{interview.interviewer.name}", interview_path(interview)%>
+    </li>
+    <%end%>
+</ul>

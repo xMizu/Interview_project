@@ -1,0 +1,6 @@
+<h1>Interview between <%="#{@interview.applicant.name} and #{@interview.interviewer.name}"%></h1>
+<h3>Date: <%=@interview.date.strftime("%B %-d, %Y")%></h3>
+<h3>Time: <%=@interview.date.strftime("%I:%M %p")%></h3>
+<h3>Status: <%=@interview.status%></h3>
+
+<%=button_to "Go Home", interviewer_path(@interview.interviewer), method: "get"%>

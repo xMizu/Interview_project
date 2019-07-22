@@ -1,0 +1,42 @@
+
+
+
+<h1>Name: <%=@applicant.name%></h1>
+
+<% if flash[:message] %>
+<%= flash[:message] %>
+<%end%>
+
+<h3>Age: <%=@applicant.age%></h3>
+<h3>Email: <%=@applicant.email%></h3>
+
+<h2>Pending Interviews</h2>
+
+<ul>
+<% @pending_interviews.each do |interview|%>
+<li>
+    <%= link_to "#{interview.date.strftime("%B %-d, %Y %I:%M %p")} with #{interview.interviewer.name}", interview_path(interview)%>
+    <%=form_tag(change_status_path(interview)) do %>
+        <%= select_tag(:status, raw("<option value='confirmed'>Accept</option><option value='reschedule'>Reschedule</option><option value='declined'>Decline</option>")) %>
+        <%= text_field_tag :message, nil, placeholder: "Message" %>
+        <%= submit_tag "Submit" %>
+    <%end%>
+    <br/>
+</li>
+<%end%>
+</ul>
+
+<h2>Confirmed Interviews</h2>
+
+<ul>
+<% @confirmed_interviews.each do |interview|%>
+<%= link_to "#{interview.date.strftime("%B %-d, %Y %I:%M %p")} with #{interview.interviewer.name}", interview_path(interview)%><br/>
+<%end%>
+</ul>
+
+<%= button_to "Edit Profile", edit_applicant_path(@applicant.id),method: :get %>
+<%= button_to "Go Back Home", applicants_path ,method: :get %>
+
+<%= button_to "Delete", @applicant ,method: "delete" %>
+
+

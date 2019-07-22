@@ -1,0 +1,15 @@
+<h1>Add New Applicant</h1>
+
+<% if flash[:message] %>
+<%= flash[:message] %>
+<%end%>
+
+<%=form_for @applicant do |f|%>
+<%=f.label :name %>
+<%=f.text_field :name %><br/>
+<%=f.label :age %>
+<%=f.number_field :age %><br/>
+<%=f.label :email %>
+<%=f.text_field :email %><br/>
+<%=f.submit 'Add New Applicant'%>
+<%end%>

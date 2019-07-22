@@ -1,0 +1,9 @@
+<h1>All Interviews</h1>
+
+<ul>
+<% @interviews.each do |interview|%>
+    <li>
+        <%= link_to "#{interview.applicant.name} meeting with #{interview.interviewer.name}", interview_path(interview) %>
+    </li>
+<%end%>
+</ul>

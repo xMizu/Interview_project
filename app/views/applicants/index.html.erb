@@ -1,0 +1,9 @@
+<h1>List of Applicants</h1>
+
+<%= button_to "Add Applicant", new_applicant_path ,method: :get %>
+
+<ul>
+<% @applicants.each do |applicant| %>
+<li><%= link_to applicant.name, applicant_path(applicant.id) %></li>
+<%end%>
+</ul>

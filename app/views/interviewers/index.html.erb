@@ -1,0 +1,11 @@
+<h1>All Interviewers</h1>
+
+<ul>
+<% @interviewers.each do |interviewer| %>
+    <li>
+        <%= link_to interviewer.name, interviewer_path(interviewer) %>
+    </li>
+<%end%>
+</ul>
+
+<%=button_to "Add Interviewer", new_interviewer_path, method: "get" %>

@@ -1,0 +1,13 @@
+<h1>Edit <%=@interviewer.name%></h1>
+
+<%= form_for @interviewer do |f| %>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label :age, "Age" %>
+    <%= f.number_field :age %>
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email %>
+    <%= f.label :company, "Company" %>
+    <%= f.text_field :company %>
+    <%= f.submit %>
+<% end %>
