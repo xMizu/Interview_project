@@ -10,7 +10,7 @@
 
 <%=button_to "Edit #{@interviewer.name}", edit_interviewer_path(@interviewer), method: "get" %>
 <%=button_to "Delete #{@interviewer.name}", interviewer_path(@interviewer), method: "delete" %>
-<%= button_to "Make New Interview", create_interview_path ,method: :get %>
+<%= button_to "Make New Interview", create_interview_path ,method: "get" %>
 <br>
 <%=button_to "Go Home", interviewers_path, method: "get" %>
 
